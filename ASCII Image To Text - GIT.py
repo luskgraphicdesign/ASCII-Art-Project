@@ -6,7 +6,7 @@ from PIL import Image
 with open("C:\\Users\\User\\Downloads\\A-Cat-Picture.png", "rb") as f:
     data = f.read()
 
-# Create image data
+# Creates image data.
 image = Image.open(BytesIO(data)).convert("RGBA")
 
 width, height = image.size
@@ -25,13 +25,13 @@ pixels = [
     if image.getpixel((x, y))[3] != 0
 ]
 
-# List of ASCII Characters
+# List of ASCII Characters.
 ASCII_CHARS = [" ","Z","Y","X","W","V","U","T","S","R","Q","P","N","M","L","K","J","I","H","G","F","E","C","A","#","&","$","%","@"]
 
-# Reversed list
+# Reversed list.
 ASCII_CHARS = list(reversed(ASCII_CHARS))
 
-# Required for Transparency
+# Required for Transparency.
 darkest_char = ASCII_CHARS.pop()
 
 # Opens a text file for the output.
@@ -44,16 +44,16 @@ with open("output.txt", "w") as f:
                 f.write(" ")
                 continue
 
-            # A check for greyscale or color
+            # A check for greyscale or color.
             if len(pixel) == 1:
                 luminosity = pixel[0]
             else:
                 luminosity = 0.21 * pixel[0] + 0.72 * pixel[1] + 0.07 * pixel[2]
 
-            # Reversed list check
+            # Reversed list check.
             ASCII_CHARS = list(reversed(ASCII_CHARS))
 
-            # ASCII Character index check
+            # ASCII Character index check.
             index = int(luminosity * (len(ASCII_CHARS) + 1) // 256)
 
 
